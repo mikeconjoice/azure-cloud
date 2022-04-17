@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mikeconjoiceazurecloud 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mikeconjoiceazurecloud
+  template:
+    metadata:
+      labels:
+        app: mikeconjoiceazurecloud 
+    spec:
+      containers:
+        - name: mikeconjoiceazurecloud 
+          image: mikeconjoiceazurepetstorecr.azurecr.io/mikeconjoiceazurecloud
+          ports:
+          - containerPort: 80
