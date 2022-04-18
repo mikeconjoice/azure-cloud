@@ -18,7 +18,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '4e8a5209-84fd-4adc-bc40-84ba7e15d796'
   imageRepository: 'petstorepetservice'
-  containerRegistry: 'azurepetstorecr.azurecr.io'
+  containerRegistry: 'mikeconjoiceazurepetstorecr.azurecr.io'
   dockerfilePath: 'petstore/petstorepetservice/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: '$(crImagePullSecretGlobal)'
@@ -27,11 +27,6 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs: 
-  - job: Analysis
-    displayName: Security Analysis
-    pool:
-      vmImage: 'windows-latest'
-
  
   - job: Build
     displayName: Build App
@@ -86,7 +81,7 @@ stages:
             inputs: 
               action: createSecret
               kubernetesServiceConnection: mikeconjoiceazurepetstore-akscluster-default
-              namespace: ingress-petstoreservices
+              namespace: default
               secretType: dockerRegistry
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
