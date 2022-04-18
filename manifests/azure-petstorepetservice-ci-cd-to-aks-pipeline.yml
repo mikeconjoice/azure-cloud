@@ -103,5 +103,3 @@ stages:
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
                 
-- stage: Automation
-  displayName: Automation stage
